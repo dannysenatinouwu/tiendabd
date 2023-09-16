@@ -73,7 +73,9 @@
     <?php
     $query = "SELECT * FROM [dbo].[productos]";
     $result = mysqli_query($conn, $query);
-
+    if (!$conn) {
+    die("La conexión a la base de datos ha fallado: " . sqlsrv_errors());
+}
     if ($result && mysqli_num_rows($result) > 0) {
         while ($data = mysqli_fetch_assoc($result)) {
     ?>
