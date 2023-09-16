@@ -69,37 +69,37 @@
             </ul>
         </div>
         <div class="contenedor-productos">
-                    <?php
-                    var_dump($conn);
-                    $query = mysqli_query($conn,"SELECT * FROM [dbo].[productos]");
-                    if (!$query) {
-                        die("La consulta ha fallado: " . mysqli_error($conn));
-                        }
-                    $result = mysqli_num_rows($query);
-                    if($result > 0){
-                        while ($data = mysqli_fetch_assoc($query)){ ?>
-                            
-                            <div class="producto">
-                                <button onclick="vista_prev(`+i+`)" class="view-button" id="view-button">
-                                    <img src="img/ojo.png" width="25" height="25">
-                                </button>
-                                <a>
-                                    <img class="imagen" src="img/productos/<?php echo $data['imagen'] ?>.png" />
-                                </a>
-                                <?php $data['id_producto'] ?>
-                                <h1><?php echo $data['nombre_producto'] ?></h1>
-                                <h3>S/. <?php echo $data['precio_producto'] ?></h3>
-                                <form class="form-carrito">
-                                    <input type="hidden" name="idPro" value="<?php echo $data['id_producto']; ?>">
-                                    <input type="hidden" name="imagen" value="<?php echo $data['imagen']; ?>">
-                                    <input type="hidden" name="nombrePro" value="<?php echo $data['nombre_producto']; ?>">
-                                    <input type="hidden" name="precioPro" value="<?php echo $data['precio_producto']; ?>">
-                                    <button type="button" class="boton-agregar" onclick="agregarCarrito(event)">Añadir al carrito</button>
-                                </form>
-                            </div>
-                    <?php }
-                    }   ?>
-                </div>
+    <?php
+    $query = "SELECT * FROM productos";
+    $result = mysqli_query($conn, $query);
+
+    if ($result && mysqli_num_rows($result) > 0) {
+        while ($data = mysqli_fetch_assoc($result)) {
+    ?>
+            <div class="producto">
+                <button onclick="vista_prev(<?php echo $data['id_producto']; ?>)" class="view-button" id="view-button">
+                    <img src="img/ojo.png" width="25" height="25">
+                </button>
+                <a>
+                    <img class="imagen" src="img/productos/<?php echo $data['imagen']; ?>.png" alt="<?php echo $data['nombre_producto']; ?>" />
+                </a>
+                <h1><?php echo $data['nombre_producto']; ?></h1>
+                <h3>S/. <?php echo $data['precio_producto']; ?></h3>
+                <form class="form-carrito">
+                    <input type="hidden" name="idPro" value="<?php echo $data['id_producto']; ?>">
+                    <input type="hidden" name="imagen" value="<?php echo $data['imagen']; ?>">
+                    <input type="hidden" name="nombrePro" value="<?php echo $data['nombre_producto']; ?>">
+                    <input type="hidden" name="precioPro" value="<?php echo $data['precio_producto']; ?>">
+                    <button type="button" class="boton-agregar" onclick="agregarCarrito(event)">Añadir al carrito</button>
+                </form>
+            </div>
+    <?php
+        }
+    } else {
+        echo "<p>No hay productos disponibles.</p>";
+    }
+    ?>
+</div>
         </div>
          <!-- 
         Idea para desarrollar.    
