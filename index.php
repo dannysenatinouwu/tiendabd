@@ -71,8 +71,10 @@
         <div class="contenedor-productos">
                     <?php
                     var_dump($conn);
-                    $query = mysqli_query($connectionInfo,"SELECT * FROM [dbo].[productos]");
-                    
+                    $query = mysqli_query($conn,"SELECT * FROM [dbo].[productos]");
+                    if (!$query) {
+                        die("La consulta ha fallado: " . mysqli_error($conn));
+                        }
                     $result = mysqli_num_rows($query);
                     if($result > 0){
                         while ($data = mysqli_fetch_assoc($query)){ ?>
