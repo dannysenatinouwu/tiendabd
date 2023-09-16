@@ -70,7 +70,7 @@
         </div>
         <div class="contenedor-productos">
     <?php
-    $query = "SELECT * FROM productos";
+    $query = "SELECT * FROM [dbo].[productos]";
     $result = mysqli_query($conn, $query);
 
     if ($result && mysqli_num_rows($result) > 0) {
