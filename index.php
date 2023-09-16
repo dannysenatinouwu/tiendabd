@@ -69,40 +69,42 @@
             </ul>
         </div>
         <div class="contenedor-productos">
-    <div class="contenedor-productos">
     <?php
-    $query = "SELECT * FROM [dbo].[productos]";
-    $result = mysqli_query($conn, $query);
-    if (!$conn) {
-    die("La conexión a la base de datos ha fallado: " . sqlsrv_errors());
-}
-    if ($result && mysqli_num_rows($result) > 0) {
-        while ($data = mysqli_fetch_assoc($result)) {
+    try {
+        $query = "SELECT * FROM [dbo].[productos]"; // Aquí se especifica la tabla [dbo].[productos]
+        $stmt = $conn->query($query);
+
+        if ($stmt) {
+            while ($data = $stmt->fetch(PDO::FETCH_ASSOC)) {
     ?>
-            <div class="producto">
-                <button onclick="vista_prev(<?php echo $data['id_producto']; ?>)" class="view-button" id="view-button">
-                    <img src="img/ojo.png" width="25" height="25">
-                </button>
-                <a>
-                    <img class="imagen" src="img/productos/<?php echo $data['imagen']; ?>.png" alt="<?php echo $data['nombre_producto']; ?>" />
-                </a>
-                <h1><?php echo $data['nombre_producto']; ?></h1>
-                <h3>S/. <?php echo $data['precio_producto']; ?></h3>
-                <form class="form-carrito">
-                    <input type="hidden" name="idPro" value="<?php echo $data['id_producto']; ?>">
-                    <input type="hidden" name="imagen" value="<?php echo $data['imagen']; ?>">
-                    <input type="hidden" name="nombrePro" value="<?php echo $data['nombre_producto']; ?>">
-                    <input type="hidden" name="precioPro" value="<?php echo $data['precio_producto']; ?>">
-                    <button type="button" class="boton-agregar" onclick="agregarCarrito(event)">Añadir al carrito</button>
-                </form>
-            </div>
+                <div class="producto">
+                    <button onclick="vista_prev(<?php echo $data['id_producto']; ?>)" class="view-button" id="view-button">
+                        <img src="img/ojo.png" width="25" height="25">
+                    </button>
+                    <a>
+                        <img class="imagen" src="img/productos/<?php echo $data['imagen']; ?>.png" alt="<?php echo $data['nombre_producto']; ?>" />
+                    </a>
+                    <h1><?php echo $data['nombre_producto']; ?></h1>
+                    <h3>S/. <?php echo $data['precio_producto']; ?></h3>
+                    <form class="form-carrito">
+                        <input type="hidden" name="idPro" value="<?php echo $data['id_producto']; ?>">
+                        <input type="hidden" name="imagen" value="<?php echo $data['imagen']; ?>">
+                        <input type="hidden" name="nombrePro" value="<?php echo $data['nombre_producto']; ?>">
+                        <input type="hidden" name="precioPro" value="<?php echo $data['precio_producto']; ?>">
+                        <button type="button" class="boton-agregar" onclick="agregarCarrito(event)">Añadir al carrito</button>
+                    </form>
+                </div>
     <?php
+            }
+        } else {
+            echo "<p>No hay productos disponibles.</p>";
         }
-    } else {
-        echo "<p>No hay productos disponibles.</p>";
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
     }
     ?>
 </div>
+
 
         </div>
          <!-- 
