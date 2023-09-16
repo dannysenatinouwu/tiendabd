@@ -70,8 +70,9 @@
         </div>
         <div class="contenedor-productos">
                     <?php
+                    var_dump($conn);
                     $query = mysqli_query($connectionInfo,"SELECT * FROM [dbo].[productos]");
-                    var_dump($query);
+                    
                     $result = mysqli_num_rows($query);
                     if($result > 0){
                         while ($data = mysqli_fetch_assoc($query)){ ?>
