@@ -2,7 +2,7 @@
 <html lang="es">
     <head>
         <meta charset="utf-8">
-        <title>Pagina web</title> 
+        <title>Pagina Web</title> 
         <link type="text/css" href="css/estilos.css?20123" rel="stylesheet">
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         
@@ -69,6 +69,7 @@
             </ul>
         </div>
         <div class="contenedor-productos">
+    <div class="contenedor-productos">
     <?php
     $query = "SELECT * FROM [dbo].[productos]";
     $result = mysqli_query($conn, $query);
@@ -100,6 +101,7 @@
     }
     ?>
 </div>
+
         </div>
          <!-- 
         Idea para desarrollar.    
