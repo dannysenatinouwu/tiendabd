@@ -69,25 +69,36 @@
             </ul>
         </div>
         <div class="contenedor-productos">
-                   <?php
-    try {
-        // Realizar una consulta utilizando la conexión PDO
-        $sql = "SELECT * FROM productos";
-        $query = $conn->query($sql);
-
-        if ($query->rowCount() > 0) {
-            while ($data = $query->fetch(PDO::FETCH_ASSOC)) { ?>
-                <div class="producto">
-                    <!-- Resto de tu código aquí -->
+                   <div class="contenedor-productos">
+                    <?php
+                    $query = mysqli_query($conexion,"SELECT * FROM productos");
+                    $result = mysqli_num_rows($query);
+                    if($result > 0){
+                        while ($data = mysqli_fetch_assoc($query)){ ?>
+                            
+                            <div class="producto">
+                                <button onclick="vista_prev(<?php echo $data['id_producto']; ?>)" class="view-button" id="view-button">
+                                    <img src="img/ojo.png" width="25" height="25">
+                                </button>
+                                
+                                <a>
+                                    <img class="imagen" src="img/productos/<?php echo $data['imagen'] ?>.png" />
+                                </a>
+                                <?php $data['id_producto'] ?>
+                                <h1><?php echo $data['nombre_producto'] ?></h1>
+                                <h3>S/. <?php echo $data['precio_producto'] ?></h3>
+                                <form class="form-carrito">
+                                    <input type="hidden" name="idPro" value="<?php echo $data['id_producto']; ?>">
+                                    <input type="hidden" name="imagen" value="<?php echo $data['imagen']; ?>">
+                                    <input type="hidden" name="nombrePro" value="<?php echo $data['nombre_producto']; ?>">
+                                    <input type="hidden" name="precioPro" value="<?php echo $data['precio_producto']; ?>">
+                                    <button type="button" class="boton-agregar" onclick="agregarCarrito(event)">Añadir al carrito</button>
+                                </form>
+                            </div>
+                    <?php }
+                    }   ?>
                 </div>
-            <?php }
-        } else {
-            echo "No se encontraron productos.";
-        }
-    } catch (PDOException $e) {
-        echo "Error: " . $e->getMessage();
-    }
-    ?>
+        </div>
         </div>
          <!-- 
         Idea para desarrollar.    
