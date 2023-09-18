@@ -1,48 +1,17 @@
-<?php require_once "conf/conexion.php"?>
 <html lang="es">
     <head>
         <meta charset="utf-8">
         <title>Pagina web</title> 
-        <link type="text/css" href="css/estilos.css?20123" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="css/estilos.css">
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        
+        <script src="js/scripts.js"></script>
+        <script src="js/carrito.js"></script>
     </head>
     <body>
     <?php
     include 'importPhp/header.php';
     ?>
-        <div class="rectangulo">
-            <div class="rombo" style="margin: 1.2% 0 0 29.5%;">
-                <img src="img/rombo.svg">
-            </div>
-            <div class="rombo" style="margin: 1.2% 0 0 64.5%;">
-                <img src="img/rombo.svg">
-            </div>
-            <a href="#" style="margin-right: 5%;"><p class="ofertas">OFERTAS</p></a>
-            
-            <a href="#" class="promocion" style="margin-right: 5%;">
-
-                    <img src="img/polo2.png" class="img1">
-                    <img src="img/polo1.png" class="img2">
-
-                    <p>Hasta</p>
-                    <h1>50</h1>
-                    <h2>
-                        %<sup>*</sup>
-                        <br>
-                        <sub>DSCTO.</sub>
-                    </h2>
-            </a>
-            
-            
-            <a href="#" class="encuesta">
-
-                    <h1>¡APROVECHA YA!</h1>
-                
-            </a>
-
-        </div>
-        <div class="colecciones" style="display: none;">
+        <section class="colecciones" style="display: none;">
             <h2>Nuestras Colecciones</h2>
             <ul class="campañas-sitio">
               <li>
@@ -55,7 +24,7 @@
               <li> 
                 <img src="img/img2.jpg" alt="Presente">
                 <div class="conjunt"> 
-                <a class="men" href="presente.php">Presente</a>
+                <a class="men" href="presente.html">Presente</a>
                 <p>120 Productos</p>
                 </div> 
               </li>
@@ -67,107 +36,106 @@
                 </div>
               </li>
             </ul>
-        </div>
-        
-        <div class="contenedor-productos">
-                    <?php
-                    $sql = "SELECT * FROM productos";
-                    if ($query === false) {
-                        die("Error en la consulta: " . print_r(sqlsrv_errors(), true));
-                    } 
-                    while ($row = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)) { ?>
-                            
-                            <div class="producto">
-                                <button onclick="vista_prev(<?php echo $row['id_producto']; ?>)" class="view-button" id="view-button">
-                                    <img src="img/ojo.png" width="25" height="25">
-                                </button>
-                                
-                                <a>
-                                    <img class="imagen" src="img/productos/<?php echo $row['imagen'] ?>.png" />
-                                </a>
-                                <?php $row['id_producto'] ?>
-                                <h1><?php echo $row['nombre_producto'] ?></h1>
-                                <h3>S/. <?php echo $row['precio_producto'] ?></h3>
-                                <form class="form-carrito">
-                                    <input type="hidden" name="idPro" value="<?php echo $row['id_producto']; ?>">
-                                    <input type="hidden" name="imagen" value="<?php echo $row['imagen']; ?>">
-                                    <input type="hidden" name="nombrePro" value="<?php echo $row['nombre_producto']; ?>">
-                                    <input type="hidden" name="precioPro" value="<?php echo $row['precio_producto']; ?>">
-                                    <button type="button" class="boton-agregar" onclick="agregarCarrito(event)">Añadir al carrito</button>
-                                </form>
-                            </div>
-                    <?php }
-                      ?>
+          </section>
+          
+            <main>
+                <div class="background-image">
+                    <img src="img/brugos_1200x1200.jpg" alt="imagen">
+                    <h1>Presente</h1>
+                    <span>Colección Invierno: Nuestros atuendos invernales no solo te mantendrán calentita, sino que te harán lucir fabulosa bajo el cielo gris. Las telas suaves y abrigadoras se unen a diseños modernos y chic, 
+                        inspirando una nueva ola de estilo acogedor y a la moda. Ya sea que te encuentres frente a una chimenea con un libro o explorando la ciudad cubierta de nieve, nuestra Colección Invierno te ofrece la comodidad y la confianza para enfrentar el frío. ¡Es tiempo de abrazar el invierno con estilo y transformar el frío en tu nueva pasarela!</span>
                 </div>
-        </div>
-         <!-- 
-        Idea para desarrollar.    
-        Lo que podria hacer para que funcione la vista seria colocarlo en un archivo php como vistas.php asi podria hacer
-        que cada vez que precionen el boton del ojo este envie el id del producto y asi vistas.php reciba ese id y haga peticiones 
-        a la base de datos y creo que con ajax podria visualizarse al precionarn el boton  -->
-        
-        <div class="window-background" id="window-background">
-            <div class="window-container" id="window-container">
-                <button class="close-button" id="close-button">
-                    <img src="https://cdn-icons-png.flaticon.com/512/1828/1828747.png" class="icon-x"/>
-                </button>
-
-                <img class="img-prev" id="img-prev">
-                
-                <div class="product-inf">
-                    <script>
-                        document.write(
-                        `
-                        <h1 id="prod-nom"></h1>
-                        <br>
-                        <h2 id="prod-prec"></h2>  
-                        <br>
-                        `)
-                    </script>
-                    <h3>Talla</h3>
-                    <div class="size-groups">
-                        <button onclick="cargar_talla(this)" class="talla" value="S">S</button>
-                        <button onclick="cargar_talla(this)" class="talla" value="M">M</button>
-                        <button onclick="cargar_talla(this)" class="talla" value="L">L</button>
-                        <button onclick="cargar_talla(this)" class="talla" value="XL">XL</button>
+                <div class="content-option">
+                    <div class="filter">
+                        <a href="#">
+                            <svg width="23" height="19" viewBox="0 0 20 20" stroke-width="1.25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <line x1="1" y1="6" x2="19" y2="6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></line>
+                                <line x1="1" y1="14" x2="19" y2="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></line>
+                                <circle cx="7" cy="6" r="3" fill="white" stroke="currentColor"></circle>
+                                <circle cx="13" cy="14" r="3" fill="white" stroke="currentColor"></circle>
+                              </svg>                                  
+                            <span>Filtrar</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down" style="transform: rotate(270deg);"><title>Abajo</title><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </a>    
                     </div>
-
-                    <br>
-
-                    <h3>Colores Disponibles</h3>
-                    <div class="color-groups">
-                        <div onclick="cargar_color(this)" class="color color-white active-color"></div>
-                        <div onclick="cargar_color(this)" class="color color-black"></div>
-                        <div onclick="cargar_color(this)" class="color color-yellow"></div>
-                        <div onclick="cargar_color(this)" class="color color-blue"></div>
-                        <div onclick="cargar_color(this)" class="color color-red"></div>
-                    </div>
-
-                    <h3>Cantidad</h3>
-                    <div class="cantidad">
-                    <button>-</button>
-                    <input type="text" value="1">
-                    <button>+</button>
-                    </div>
-
-                    <br><br>
-
-                    <button class="btn-carrito">Agregar al carrito</button>
-                    <br>
-                    <button class="btn-comprar">Comprar</button>
+                    <div class="cant-product"><span>120 productos</span></div>
                 </div>
-            </div>
-        </div>
-
+                    <div class="container">
+                        <div class="container-opcion-filter">
+                            <form action="">
+                                <div class="span1">Precio</div>
+                                <div class="opcion-precio" >
+                                    <div class="precio-1" onclick="cambiarSeleccion(1)">
+                                        <span>S/.</span>
+                                        <input type="text" placeholder="0" pattern="[0-9]*" step="10" min="0" max="344" aria-label="De" oninput="this.value = this.value.replace(/[^0-9]/g, '')">               
+                                    </div>
+                                    <div class="precio-2"  onclick="cambiarSeleccion(2)">
+                                        <span>S/.</span>
+                                        <input type="text" placeholder="350" pattern="[0-9]*" step="10" min="0" max="344" aria-label="De" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                                    </div>    
+                                </div>
+                                <div class="span1">Talla</div>
+                                <div class="opcion-talla">
+                                    <label>
+                                      <input type="checkbox" name="" id="checkbox-s">
+                                      <span>S</span>
+                                    </label>
+                                    <label>
+                                      <input type="checkbox" name="" id="checkbox-m">
+                                      <span>M</span>
+                                    </label>
+                                    <label>
+                                      <input type="checkbox" name="" id="checkbox-l">
+                                      <span>L</span>
+                                    </label>
+                                    <label>
+                                      <input type="checkbox" name="" id="checkbox-xl">
+                                      <span>XL</span>
+                                    </label>
+                                    <label>
+                                      <input type="checkbox" name="" id="checkbox-s">
+                                      <span>30</span>
+                                    </label>
+                                    <label>
+                                      <input type="checkbox" name="" id="checkbox-m">
+                                      <span>28</span>
+                                    </label>
+                                    <label>
+                                      <input type="checkbox" name="" id="checkbox-l">
+                                      <span>26</span>
+                                    </label>
+                                    <label>
+                                      <input type="checkbox" name="" id="checkbox-xl">
+                                      <span>24</span>
+                                    </label>
+                                  </div>        
+                                  
+                            </form>
+                        </div>
+                    <div class="page-content">
+                        <script>
+                            for (let i = 0; i < 9; i++){
+                                document.write(
+                                    `
+                                        <div class="product-container">
+                                        <img src="img/presente-coleccion.png" />
+                                        <h1>Camisa Sander Rojo</h1>
+                                        <h3>S/. 124.50</h3>
+                                        <button class="boton-agregar">añadir carrito</button>
+                                        </div>
+                                    `);
+                            }
+                        </script>
+                    </div>
+                </div>
+            </main>
+            
         <?php
         include 'importPhp/footer.php'
-        ?>
-        
+        ?> 
+
         <?php
         include 'importPhp/carrito-import.php'
         ?>
-        <script src="js/vista-previa.js?2022"></script>
-        <script src="js/scripts.js"></script>
-        <script src="js/carrito.js?20123213"></script>  
     </body>
 </html>
