@@ -1,5 +1,5 @@
 <?php
-require_once("config/conexion.php");
+require_once("conf/conexion.php");
 
 $sql = "SELECT * FROM productos";
 $query = sqlsrv_query($conn, $sql);
