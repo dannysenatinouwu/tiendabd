@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>Pagina web</title> 
-    <link type="text/css" href="css/estilos.css?20123" rel="stylesheet">
+    <link type="text/css" href="/css/estilos.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
@@ -168,8 +168,8 @@ include 'importPhp/footer.php'
 <?php
 include 'importPhp/carrito-import.php'
 ?>
-<script src="js/vista-previa.js?2022"></script>
-<script src="js/scripts.js"></script>
-<script src="js/carrito.js?20123213"></script>  
+<script src="/js/vista-previa.js?2022"></script>
+<script src="/js/scripts.js"></script>
+<script src="/js/carrito.js?20123213"></script>  
 </body>
 </html>
