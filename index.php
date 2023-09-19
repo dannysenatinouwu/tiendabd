@@ -7,6 +7,7 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="js/scripts.js"></script>
         <script src="js/carrito.js"></script>
+        <script src="js/vista-previa.js"></script>
     </head>
     <body>
     <?php
@@ -76,19 +77,21 @@
                     if ($query === false) {
                         die("Error en la consulta: " . print_r(sqlsrv_errors(), true));
                     } 
-                    while ($row = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)) { ?>
+                    ?>
+
+                    <?php while ($row = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)) { ?>
                             
                             <div class="producto">
-                                <button onclick="vista_prev(<?php echo $row['id_producto']; ?>)" class="view-button" id="view-button">
+                                <button onclick="vista_prev()" class="view-button" id="view-button">
                                     <img src="img/ojo.png" width="25" height="25">
                                 </button>
                                 
                                 <a>
-                                    <img class="imagen" src="img/productos/<?php echo $row['imagen'] ?>.png" />
+                                <?php echo "<img class='imagen' src='img/productos/'". $row['imagen'] . ""?>.png" />;
                                 </a>
                                 <?php $row['id_producto'] ?>
-                                <h1><?php echo $row['nombre_producto'] ?></h1>
-                                <h3>S/. <?php echo $row['precio_producto'] ?></h3>
+                                <?php echo "<h1>". $row['nombre_producto'] ."</h1>" ?>
+                                <?php echo "<h3>S/.".$row['precio_producto'] ."</h3>"?>
                                 <form class="form-carrito">
                                     <input type="hidden" name="idPro" value="<?php echo $data['id_producto']; ?>">
                                     <input type="hidden" name="imagen" value="<?php echo $data['imagen']; ?>">
@@ -167,8 +170,5 @@
         <?php
         include 'importPhp/carrito-import.php'
         ?>
-        <script src="js/vista-previa.js"></script>
-        <script src="js/scripts.js"></script>
-        <script src="js/carrito.js?"></script>  
     </body>
 </html>
