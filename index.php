@@ -143,6 +143,7 @@
             </div>
             <iframe src='https://webchat.botframework.com/embed/ChatbotArgos-bot?s=aNozmJ9aS-4.yHAwIw1NCqWfLObP7O4Nl5a8x1W6SI7h68VGCrjKQ_s' class='chatbot-iframe'></iframe>
         </div>
+    
         <script>
             // Obtener elementos por su ID
             const messageIcon = document.getElementById('message-icon');
