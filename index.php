@@ -143,6 +143,26 @@
             </div>
             <iframe src='https://webchat.botframework.com/embed/ChatbotArgos-bot?s=aNozmJ9aS-4.yHAwIw1NCqWfLObP7O4Nl5a8x1W6SI7h68VGCrjKQ_s' class='chatbot-iframe'></iframe>
         </div>
+        <script>
+            // Obtener elementos por su ID
+            const messageIcon = document.getElementById('message-icon');
+            const chatbotContainer = document.getElementById('chatbot-container');
+            const closeIcon = document.getElementById('close-icon');
+    
+            // Mostrar el contenedor del chatbot y el icono de cierre al hacer clic en el icono de mensaje
+            messageIcon.addEventListener('click', () => {
+                chatbotContainer.style.display = 'block';
+                messageIcon.style.display = 'none';
+                closeIcon.style.display = 'block';
+            });
+    
+            // Ocultar el contenedor del chatbot y el icono de cierre al hacer clic en el icono de cierre
+            closeIcon.addEventListener('click', () => {
+                chatbotContainer.style.display = 'none';
+                messageIcon.style.display = 'block';
+                closeIcon.style.display = 'none';
+            });
+        </script>
 
 <?php include 'importPhp/footer.php'; ?>
 <?php include 'importPhp/carrito-import.php'; ?>
