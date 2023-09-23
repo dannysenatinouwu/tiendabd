@@ -1036,6 +1036,57 @@ nav a:hover::after {
   color: #ededed;
 }
 
+/* CHAT  BOT*/
+.chatbot-container {
+  display: none; /* Inicialmente oculto */
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 300px; /* Ancho del contenedor del chatbot */
+  height: 420px; /* Altura del contenedor del chatbot */
+  background-color: #f4f4f4; /* Color de fondo del contenedor */
+  border: solid black 1.5px;
+  border-radius: 10px;
+  z-index: 900; /* Posición en capas para que esté por encima de otros elementos */
+}
+
+/* Estilos para el iframe */
+.chatbot-iframe {
+  width: 96%; /* Ancho del iframe al 100% del contenedor */
+  height: 100%; /* Altura del iframe al 100% del contenedor */
+  border: none; /* Sin borde alrededor del iframe */
+  border-radius: 20px;
+}
+
+/* Estilos para el icono de mensaje */
+.message-icon {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 100px; /* Ancho del icono */
+  height: 100px; /* Altura del icono */
+  background-image: url('img1.png'); /* Establecer la imagen como fondo */
+  background-repeat: no-repeat; /* Evitar la repetición de la imagen */
+  background-size: 100%; /* Tamaño de la imagen de fondo */
+  border-radius: 50%; /* Forma circular del icono */
+  cursor: pointer; /* Cambiar el cursor al pasar sobre el icono */
+  z-index: 10000; /* Posición en capas para que esté por encima del contenedor del chatbot */
+}
+
+/* Estilos para el icono de cierre del chat */
+.close-icon {
+  display: none; /* Inicialmente oculto */
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 20px; /* Ancho del icono de cierre */
+  height: 20px; /* Altura del icono de cierre */
+  text-align: center; /* Centrar el contenido dentro del icono de cierre */
+  line-height: 20px; /* Alinear verticalmente el contenido */
+  border-radius: 50%; /* Forma circular del icono de cierre */
+  cursor: pointer; /* Cambiar el cursor al pasar sobre el icono de cierre */
+}
+
 /* ↓↓ FOOTER ↓↓ */
 footer {
   background-color: black;
