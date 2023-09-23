@@ -136,6 +136,14 @@
     </div>
 </div>
 
+<!-- Contenedor del iframe -->
+        <div class="chatbot-container" id="chatbot-container">
+            <div class="close-icon" id="close-icon">
+                <i class="fas fa-times"></i>
+            </div>
+            <iframe src='https://webchat.botframework.com/embed/ChatbotArgos-bot?s=aNozmJ9aS-4.yHAwIw1NCqWfLObP7O4Nl5a8x1W6SI7h68VGCrjKQ_s' class='chatbot-iframe'></iframe>
+        </div>
+
 <?php include 'importPhp/footer.php'; ?>
 <?php include 'importPhp/carrito-import.php'; ?>
 </body>
